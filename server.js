@@ -14,7 +14,7 @@ app.get('/employees/random', (req, res) => {
    return random;
   }
   const number = randNumber();
-  console.log(number);
+  
   res.send(employees[number]);
 })
 

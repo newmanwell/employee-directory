@@ -8,6 +8,16 @@ app.get('/', (req, res) => {
   res.send('Hello employees!');
 });
 
+app.get('/employees/random', (req, res) => {
+  const randNumber = () => {
+   const random = Math.floor(Math.random() * employees.length);
+   return random;
+  }
+  const number = randNumber();
+  console.log(number);
+  res.send(employees[number]);
+})
+
 app.get('/employees', (req, res) => {
   res.send(employees);
 })

@@ -20,3 +20,5 @@ const employees = [
     name: "Eric"
   }
 ]
+
+module.exports = employees;

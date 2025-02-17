@@ -52,12 +52,18 @@ app.post(`/api/v1/employees`, (req, res, next) => {
   idNumber++;
   res.send(employees);
   }
-})
+});
 
+// 400 error handler for no name
 app.use((err, reg, res, next) => {
   res.status(400).send(err.message);
-})
+});
+
+// 404 error handler 
+app.use ((req, res) =>{
+  res.status(404).send('This page does not exist on the server');
+});
 
 app.listen(port, () => {
   console.log(`Listening on ${port}`)
-})
+});

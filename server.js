@@ -45,6 +45,7 @@ app.post(`/api/v1/employees`, (req, res, next) => {
   });
   // increment the next id number
   idNumber++;
+  res.send(employees);
 })
 
 app.listen(port, () => {

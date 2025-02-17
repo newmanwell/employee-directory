@@ -31,6 +31,10 @@ app.get('/employees/:id', (req, res) => {
   res.send(employeeId);
 })
 
+app.post(`/api/v1/employees`, (req, res, next) => {
+  res.send(`hello post`);
+})
+
 app.listen(port, () => {
   console.log(`Listening on ${port}`)
 })

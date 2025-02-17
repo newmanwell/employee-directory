@@ -38,6 +38,11 @@ let idNumber = 6;
 app.post(`/api/v1/employees`, (req, res, next) => {
   // destructure the request body
   const { name } = req.body;
+  //error handling conditional
+  if(!name) {
+    const error = new Error("Must Enter Name");
+    next(error);
+  } else {
   // push new object to the array
   employees.push({
     id: idNumber,
@@ -46,8 +51,19 @@ app.post(`/api/v1/employees`, (req, res, next) => {
   // increment the next id number
   idNumber++;
   res.send(employees);
-})
+  }
+});
+
+// 400 error handler for no name
+app.use((err, reg, res, next) => {
+  res.status(400).send(err.message);
+});
+
+// 404 error handler 
+app.use ((req, res) =>{
+  res.status(404).send('This page does not exist on the server');
+});
 
 app.listen(port, () => {
   console.log(`Listening on ${port}`)
-})
+});

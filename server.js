@@ -2,7 +2,8 @@ const employees = require('./employess.js');
 
 const express = require('express');
 const app = express();
-const port = 8081;
+app.use(express.json());
+const port = process.env.PORT || 8081;
 
 app.get('/', (req, res) => {
   res.send('Hello employees!');
@@ -29,6 +30,22 @@ app.get('/employees/:id', (req, res) => {
     return oneEmployee.id === Number(id);
   })
   res.send(employeeId);
+})
+
+// Setting the next id number
+let idNumber = 6;
+
+app.post(`/api/v1/employees`, (req, res, next) => {
+  // destructure the request body
+  const { name } = req.body;
+  // push new object to the array
+  employees.push({
+    id: idNumber,
+    name: name
+  });
+  // increment the next id number
+  idNumber++;
+  res.send(employees);
 })
 
 app.listen(port, () => {

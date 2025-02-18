@@ -1,7 +1,12 @@
 const employees = require('./db/employess.cjs');
 
 const express = require('express');
+const cors = require('cors');
+const corsOptions = {
+  origin: "http://127.0.0.1:5173"
+}
 const app = express();
+app.use(cors(corsOptions));
 app.use(express.json());
 const port = process.env.PORT || 8081;
 
